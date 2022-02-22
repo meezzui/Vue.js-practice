@@ -13,7 +13,7 @@
 + 명령어 하나로 Vue 프로젝트에서 필요한 폴더 구조, 파일들, 기본 설정 옵션 등을 자동으로 만들어 준다.
 + 설치 명령어 `npm install -g @vue/cli`
 
-#### Vue CLI를 통해서 뷰 프로젝트 만드는 방법
+#### Vue CLI를 통해서 뷰 프로젝트 만드는 방법(3가지)
 + Defalut 옵션으로 생성하기
   + 메뉴 바에 view -> terminal 선택 -> 터미널창 열림 -> 명령어 `vue create 프로젝트명` 입력
   ![image](https://user-images.githubusercontent.com/86812098/154855627-5a503e35-086d-4c98-b1ab-3b92619c3e7a.png)
@@ -61,4 +61,45 @@
       </script>
       ```
 + Manually select features 옵션으로 셍성하기(내가 원하는 기능을 선택해서 프로젝트를 생성)
+  + 메뉴 바에 view -> terminal 선택 -> 터미널창 열림 -> 명령어 `vue create 프로젝트명` 입력
+  ![image](https://user-images.githubusercontent.com/86812098/154855627-5a503e35-086d-4c98-b1ab-3b92619c3e7a.png)
+  + 위에서 Manually 선택
+  + 아래와 같은 선택기능들이 나옴
+ 
+    ![image](https://user-images.githubusercontent.com/86812098/155036864-fcc23ba4-7b85-4190-b7bd-35b0215e6a1e.png)
+ 
+  + 기능 선택방법 : 스페이스바로 선택할 수 있음.(Babel, Vuex, Router, Linter/Formatter 선택함)
+  ![image](https://user-images.githubusercontent.com/86812098/155037592-81b69cee-a8c7-4381-936b-bedf9fcee087.png)
+  
+  + 위의 내용은 뷰의 버전을 고르라는 질문이다. 가장 최신버전인 버전3를 선택해주면 된다.
+  + 버전을 선택하면 히스토리 라우터를 사용할건지에 대해 물어본다. -> y라고 적으면 된다.
+  + 그러면 아래처럼 어떤 config를 선택할 것인지 고르는 질문이 뜬다. -> `ESLint + Standard config`를 선택해준다.
+  ![image](https://user-images.githubusercontent.com/86812098/155038210-20190859-08f9-4d86-8b6d-61b11cd10fb4.png)
+
+  + `lint features`는 컨벤션이 잘 지켜졌느냐를 체크하는 것이다. 아래는 그 체크 할 시점을 선택하라는 질문이다. -> `Lint on save`선택
+    ![image](https://user-images.githubusercontent.com/86812098/155038489-95076837-736b-4652-8101-ada638e98de7.png)
+    
+  + config파일을 각각의 별도의 파일로 만들지 아니면 `package.json` 안에 넣을지 선택하는 질문이 나온다. -> `package.json`으로 선택한다.
+  + `Save this as a preset for future projects?` 다른 프로젝트를 만들때 동일한 옵션으로 프로젝트를 빠르게 만들거니? 라는 질문이 나온다. ->y 라고 입력
+  + 그러면 아래와 같이 preset의 이름을 지으라고 나온다.
+  ![image](https://user-images.githubusercontent.com/86812098/155039871-ec2cd6e1-f08b-4bb3-bfaa-fb22d8a505c4.png)
+  + 그러면 결과적으로 프로젝트가 생성이 된다.
+  + 다른 프로젝트를 만들 경우 `vue create 프로젝트명`을 입력하면 프로젝트를 어떻게 생성할 것인지 선택하는게 나오는 부분에 전에 지정한 preset 이름이 나타날 것이다. 
+  + 이처럼 자주 프로젝트를 생성해야 할 경우 preset을 해놓으면 빠르게 생성이 가능하다.😉
+
+  
+  
 + Vue 프로젝트 매니저로 생성하기
+  + `Vue 프로젝트 매니저로 생성하기`란 cmd창으로 프로젝트를 생성하는 것이 아니라 마우스로 클릭!!🖱 클릭!!🖱 해서 프로젝트를 생성하는 것을 말한다.
+
+
+
+
+
+
+
+
+
+
+
+
