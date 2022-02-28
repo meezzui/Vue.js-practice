@@ -73,7 +73,10 @@ export default {
   }
   </script>
   ```
-
++ textarea 태그
+  + 태그 안에 `v-model`을 이용하여 바인딩 해준다.
+  + div 태그에 문자열을 바인딩 하는 것과는 엄연히 다르다.
+  + `<textarea v-model="valueModel3"></textarea>`
 
     
     
