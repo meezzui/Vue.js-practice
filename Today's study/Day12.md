@@ -63,4 +63,114 @@
    + 그러면 부모에 있는 클릭을 클릭하는 순간 refs를 통해서 child_component에 접근을 하고 또 refs를 통해서 child_btn을 접근함.
    + `부모 컴포넌트에서 직접 발생시킨 이벤트` 알림이 뜸
    
++ 부모 컴포넌트에서 자식 컴포넌트의 메소드 실행시키기
+  + 자식 컴포넌트(ChildComponent)
+   ```node
+   <div>
+    <button type="button" @click="childFunc" ref="childbtn">자식에 있는 클릭</button>
+   <div>
+   
+   <script>
+    methods:{
+      childFunc(){
+        alert('부모 컴포넌트에서 직접 발생시킨 이벤트');
+      }
+    }
+    ```
+    + 부모 컴포넌트
+   ```node
+   <template>
+   <div>
+    <button type="button" @click="callChildFunc" ref="childbtn">부모에 있는 클릭</button>
+    <ChildComponent ref="child_component"/>
+   <div>
+   <template>
+   <script>
+   import ChildComponent from './ChildComponent';
+   
+   export default{
+    name: '',
+    components: {ChildComponent},
+    data(){
+      return{
+      
+      };
+    },
+    methods:{
+      callChildFunc(){
+        this.$refs.child_component.childFunc(); // 직접 메소드 호출(함수를 호출할 때는 refs를 사용할 필요 없음)
+                                                
+      }
+    }
+   }
+   </script>
+   ```
+   🎈 refs는 컴포넌트안에 있는 html객체에 접근할 때만 사용함!! 🎈  
+   
+ + 부모 컴포넌트에서 자식 컴포넌트에 정의된 데이터 변경하기
+   + 자식 컴포넌트(childComponent)
+   ```node
+   <template>
+   <div>
+    <h1>{{msg}}</h1>
+   </div>
+   </template>
+   <script>
+   export default{
+    name: ''.
+    components: {},
+    data(){
+      return{
+        msg: '자식에 있던 메시지'
+      };
+    }
+   }
+   </script>
+   ```
+   + 부모 컴포넌트
+   ```node
+   <template>
+   <div>
+    <button type="button" @click="callChildFunc" ref="childbtn">부모에 있는 클릭</button>
+    <ChildComponent ref="child_component"/>
+   <div>
+   <template>
+   <script>
+   import ChildComponent from './ChildComponent';
+   
+   export default{
+    name: '',
+    components: {ChildComponent},
+    data(){
+      return{
+      
+      };
+    },
+    methods:{
+      callChildFunc(){
+        this.$refs.child_component.msg = '부모컴포넌트에서 변경한 메시지';                                     
+      }
+    }
+   }
+   </script>
+   ```
+   + 즉, `refs`를 이용하면 html 객체에 접근하기, 데이터에 정의된 값을 변경하는 것이 가능하다.
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
