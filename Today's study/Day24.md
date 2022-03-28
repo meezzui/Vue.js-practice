@@ -1,7 +1,7 @@
 #### 목록 접었다 펼쳤다(접혀있을 땐 '▼' 이미지 펼쳐졌을 땐 '▲' 이미지)
 + 목록에 화살표 방향을 클릭하면 주문 상세 내역을 볼 수 있으며 화살표 방향이 바뀐다. 그 화살표를 클릭하면 다시 목록이 접힌다.
 + 먼저 `data`에 `orderDetailDown: true`을 선언해준다. 그리고 img태그에 클릭 이벤트를 선언해준다. `@click="clickedDownBtn1()"`
-+ <script> 안에 `clickedDownBtn1()` 이 함수는 클릭되었을 때 `this.orderDetailDown = !this.orderDetailDown`를 실행하게 되는데 기존에 `orderDetailDown`값을 `false`로 바꿔준다.
++ `script`안에 `clickedDownBtn1()` 이 함수는 클릭되었을 때 `this.orderDetailDown = !this.orderDetailDown`를 실행하게 되는데 기존에 `orderDetailDown`값을 `false`로 바꿔준다.
 + `<img v-if="!orderDetailDown" src="@/assets/image/temp/down-arrow.png" @click="clickedDownBtn1()">` : `v-if="!orderDetailDown"`으로 인해 이미지가 클릭되었을 때 `orderDetailDown`이 false인 경우 '▼'이미지가 보인다.
 + `<img v-else src="@/assets/image/temp/up-arrow.png" @click="clickedDownBtn1()">` : `v-else`로 인해 이미지가 클릭되면 '▲'이미지로 바뀐다.
 + `<div v-if="orderDetailDown" class="or-detail-contents-box">`: `orderDetailDown`이 true일 경우에만 해당 div안에 요소들이 보인다.
