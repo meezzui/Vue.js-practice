@@ -1,5 +1,14 @@
 #### 공통 버튼 components에 따로 파일을 빼기
 + components > BottomButton.vue
++ `:class="isPadding ? 'padding-wrap' : ''"`: 버튼 padding 유무 -> 사용단에서 버튼에 padding이 있게 하고 싶으면 `isPadding:true` 이렇게 쓰면 된다. 
++ `<button  v-if="single" class="bottom_buttom"  @click.prevent="$emit('click-single')"  :class="isValid ? 'on' : 'off'">`
+  + 버튼 하나짜리 영역 -> 사용단에서 `single="버튼에 보여지는 글자 넣는 부분"` 이렇게 쓰면 된다.
++ `<div v-else class="bottom_two_buttom" :class="generalBtns ? 'general' : ''">`
+  + 버튼 두개짜리 영역 -> 사용단에서 `left:"버튼에 보여지는 글자 넣는 부분" right="버튼에 보여지는 글자 넣는 부분"` 이렇게 쓰면 된다.
++ `<button v-if="heart" class="heart" @click.prevent="handleLikeBtn">`
+  + 버튼 두개일 때 왼쪽 버튼이 하트인 경우(좋아요)
+
++ `props: ['isPadding', 'single', 'isValid', 'left', 'right', 'generalBtns', 'heart']` 이렇게 props로 넘겨줬기 때문에 사용단에서 이걸 가져다가 쓸 수 있다.
 ```node
 <template>
   <section id="bottom-button-wrap" :class="isPadding ? 'padding-wrap' : ''">
