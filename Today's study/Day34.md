@@ -1,7 +1,7 @@
 #### 달력 모달창 기능 구현
 + 달력 이미지를 클릭하면 달력 모달창이 뜨고 날짜를 선택하면 그 선택된 날짜가 날짜란에 보이게 된다.
 + `<div v-for="(tax, t) in taxList" :key="t" class="tax_product_choice">` : 구매날짜 선택하는 칸과 물품 구분 칸을 반복문을 돌려준 것이다.
-+ 달력은 ionic의 기능을 사용했다.
++ 달력은 ionic의 `ion-datetime` API를 사용했다.
 ```node
 <div class="date_time_box">
   <p>{{tax.date}}</p>
