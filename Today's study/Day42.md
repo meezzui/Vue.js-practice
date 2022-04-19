@@ -23,7 +23,7 @@
 + `<article v-if="orderOpt.length !== 0">`: 선택된 리스트에 값이 있을 경우에만 총 주문금액 노출  
 
 [script 설명]  
-+ 낼 이어서...😉
++ 아래 스크립트 부분에 주석으로 설명 달아놓음
 ```node
 <template>
   <ion-page>
@@ -222,9 +222,9 @@ export default {
       this.showModal = true
     },
     // 옵션 상품 삭제
-    handleDeleteItem(s) {
-      this.totalPrice = this.totalPrice - (this.orderOpt[s].cnt * this.tourpassInfo.salAmt)
-      this.orderOpt.splice(s, 1)
+    handleDeleteItem(s) {  // x 버튼을 누르면 해당 옵션상품이 삭제 됨
+      this.totalPrice = this.totalPrice - (this.orderOpt[s].cnt * this.tourpassInfo.salAmt) // 총 금액도 달라지겠지?? 해당 총 금액에서 그 해당 옵션상품 금액을 빼줌
+      this.orderOpt.splice(s, 1) // 하나씩 삭제하기
     },
     onPutCart() {
       this.$alert({
@@ -235,11 +235,11 @@ export default {
       })
     },
     // 옵션 상품 갯수
-    onChangeCount({ count, index1 }) {
-      this.totalPrice = 0
-      this.orderOpt[index1].cnt = count
+    onChangeCount({ count, index1 }) { // Count 컴포넌트로 따로 빼둔거 사용하는 방법
+      this.totalPrice = 0 // data()에 totalPrice선언해준거 0으로 잡기
+      this.orderOpt[index1].cnt = count // 여기서 cnt는 setOrderOption()에서의 cnt를 말함
       for (let i = 0; i < this.orderOpt.length; i++) {
-        this.totalPrice = this.totalPrice + (this.orderOpt[i].cnt * this.tourpassInfo.salAmt)
+        this.totalPrice = this.totalPrice + (this.orderOpt[i].cnt * this.tourpassInfo.salAmt) //총 금액 = 옵션 갯수 * 상품 
       }
     },
     // 초기 옵션 기본 세팅
