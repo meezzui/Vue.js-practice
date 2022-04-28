@@ -4,6 +4,11 @@
 
   ![image](https://user-images.githubusercontent.com/86812098/165415098-470d734a-3c96-4bc7-ac6f-07f288984939.png)
   
++ `<div role="button" class="subtract" @click="handleSubtract"/>` 
+  + `role="button"`: 요소가 버튼이지만 버튼 기능을 제공하지 않는다요소가 버튼이지만 버튼 기능을 제공하지 않는다. 그러나 속성 button과 함께 사용 하여 토글 버튼을 생성 할 수 있다.
+  + css로 형태를 잡아줘야 한다.
+  + 별도의 키 이벤트 핸들러를 요소에 추가해야 한다. - `@click="handleSubtract"`
+  + `@click="handleSubtract` : 버튼 클릭 시 `handleSubtract`함수 실행. 숫자가 0보다 클 경우에만 '-' 클릭 시 숫자가 내려감.
 + 코드
 ```node
 <template>
