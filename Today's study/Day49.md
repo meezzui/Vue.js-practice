@@ -9,6 +9,18 @@
   + css로 형태를 잡아줘야 한다.
   + 별도의 키 이벤트 핸들러를 요소에 추가해야 한다. - `@click="handleSubtract"`
   + `@click="handleSubtract` : 버튼 클릭 시 `handleSubtract`함수 실행. 숫자가 0보다 클 경우에만 '-' 클릭 시 숫자가 내려감.
++ `<p :class="countOption.count > 0 ? '' : 'off'">{{ countOption.count }}</p>`: 숫자 counting 보여주는 부분. counting이 '0'인 경우는 숫자 색깔 회색!! 
++ `<div role="button" class="add" @click="handleAdd"/>` : counting 증가버튼. 버튼 클릭시 `handleAdd`함수 실행
+```node
+props: {
+  countOption: {
+    type: Object,
+    default: () => {
+      return { count: 0 }
+    }
+  }
+```
++ `props`로 타입은 object, count는 0으로 보내줬다.
 + 코드
 ```node
 <template>
@@ -36,7 +48,7 @@ export default {
       index: 0
     }
   },
-  watch: {
+  watch: { //watch는 감시할 데이터를 지정하고 그 데이터가 바뀌면 어떠한 함수를 실행하라는 방식의 명령형 프로그래밍 방식
     countOption: {
       deep: true,
       handler(value) {
@@ -44,7 +56,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted() { //초기 렌더링 직전에 컴포넌트에 직접 접근
     this.$nextTick(() => {
       this.dynamicCount = this.countOption.count
       this.index = this.countOption.index ? this.countOption.index : 0
@@ -52,15 +64,15 @@ export default {
   },
   methods: {
     handleSubtract() {
-      if (this.dynamicCount > 0) {
-        this.dynamicCount--
+      if (this.dynamicCount > 0) { //숫자가 0보다 클 경우
+        this.dynamicCount-- //내려주기
       }
-      this.$emit('change', { count: this.dynamicCount, index: this.index })
+      this.$emit('change', { count: this.dynamicCount, index: this.index }) //사용단에서 @change 함수를 써서 사용
       this.dynamicCount = this.countOption.count
     },
-    handleAdd() {
+    handleAdd() { //숫자 증가시켜주기
       this.dynamicCount++
-      this.$emit('change', { count: this.dynamicCount, index: this.index })
+      this.$emit('change', { count: this.dynamicCount, index: this.index }) ////사용단에서 @change 함수를 써서 사용
       this.dynamicCount = this.countOption.count
     }
   }
