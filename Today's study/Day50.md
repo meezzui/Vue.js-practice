@@ -149,3 +149,7 @@ export default defineComponent({
 })
 </script>
  ```
+#### swiper 사용법
++ `npm i swiper` 로 swiper를 설치해준다.
++ swiper를 사용할 페이지에 import를 해준다. 예) `import { Pagination } from 'swiper'` : pagination을 사용하겠단 의미!!!
++ `<swiper></swiper>`, `<swiper-slide></swiper-slide>` 안에 요소들을 넣어주면 된다.
