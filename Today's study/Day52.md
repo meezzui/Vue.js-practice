@@ -1,7 +1,25 @@
 #### Pagination
 + component로 따로 빼서 사용
 + 코드 설명
-  + ✔✔✔✔
+  + `<div v-if="pageList[0].page > 10" role="btn" class="prev_btn" @click="handlePaging(-1, curPage)"/>`
+    + 이 버튼은 `prev` 버튼으로 페이지리스트에 페이지 수가 10개가 넘을 경우에만 나타난다.
+    + 이 버튼을 클릭 할 경우 `handlePaging()` 함수가 싱행된다.
+
+  ```node
+  <div
+    v-for="(page, p) in pageList"
+    :key="p"
+    role="btn"
+    class="each_page"
+    :class="curPage - pageGroupIndex === (p + 1) ? 'on' : ''"
+    @click="handlePaging(p, page.page)">
+    <p>{{ page.page }} </p>
+  </div>
+  ```
+    + `pageList`안에 페이지 수 만큼 반복문을 돌면서 `<p>{{ page.page }} </p>` 페이지를 나타내준다.
+    + `:class="curPage - pageGroupIndex === (p + 1) ? 'on' : ''"`: 현재 페이지의 페이지네이션 숫자에 `on` css가 적용되게 만들어서 그 페이지인 것을 표시해준다.
+    + `<div v-if="totalAmt > amtPerPage * (pageList[pageList.length - 1].page)" role="btn" class="next_btn" @click="handlePaging(10, curPage)"/>`
+      + 페이지네이션을 10개씩만 보여주는데 `totalAmt` 페이지가 10개가 넘을 경우 보인다.
 ```node
 <template>
   <div id="pagenation">
