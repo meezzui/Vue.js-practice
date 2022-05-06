@@ -1,3 +1,15 @@
+#### Math.floor() 란? 
++ `Math.floor()` 함수는 주어진 숫자와 같거나 작은 정수 중에서 가장 큰 수를 반환한다.
++ 예)
+```node
+Math.floor( 45.95); //  45
+Math.floor( 45.05); //  45
+Math.floor(  4   ); //   4
+```
++ `pagination`에서 사용
+  + page 범위 정할 때 사용 => `index < Math.floor((this.totalAmt - 1) / this.amtPerPage + 1)`
++ 참고📢 `Math.floor(null)`은 `NaN` 대신 `0`을 반환!!
+
 #### Pagination
 + component로 따로 빼서 사용
 + 코드 설명
