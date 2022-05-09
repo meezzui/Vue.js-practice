@@ -194,6 +194,7 @@ export default defineComponent({
 + 상세 페이지✨
 + `<PopupLayout :title="popTitle" :close="close">`: props로 넘겨준 값 받아서 사용 => 팝업창에 '교환권/티켓'이라는 제목이 보이고 close 버튼이 생김
 + `<template #pop-con>`: slot으로 상세페이지  template 넣어주기
++ `props: ['popTitle', 'close', 'popDetail']`: props로 받아서 
 ```node
 <template>
   <ion-page>
@@ -355,10 +356,6 @@ export default defineComponent({
     }
   },
   created() {
-    // pc에서 팝업 띄울 때 호출
-    this.params = this.popDetail
-    this.isTicket = Boolean(this.params.isTicket === 'true')
-    this.getDetailInfo()
   },
   ionViewWillEnter() {
     // 모바일에서 페이지 이동 시 호출
@@ -394,3 +391,66 @@ export default defineComponent({
 ```
 #### 잠깐❗❗❗ 근데 위에 처럼만 하면 팝업창 안에 template 내용이 제대로 나오지 않는 문제가 발생한다.
 + 웹버전일 경우 팝업창 상세페이지로 가는 router 설정을 제대로 해주지 않았기 때문이다. 
++ 리스트 페이지 수정
+  + `@click="device === 'PC' ? 'openModal('ticket')' : 'goTicketDetail(ticket)'"` 이렇게 템플릿에서 분기를 나눠주지 말고 `@click="goTicketDetail(ticket)"`이렇게 모바일 버전일 경우 상세페이지로 가게 해둔다.
+  + 스크립트 부분을 바꿔준다.
+  ```node
+  // 티켓 상세로 이동
+    goTicketDetail(info) {
+      this.dtlInfo.ordNo = info.ordNo
+      this.dtlInfo.ordDtlSeqNo = info.ordDtlSeqNo
+      this.dtlInfo.tkNo = info.tkNo
+      this.dtlInfo.prdtGbn = info.prdtGbn
+      this.dtlInfo.isTicket = this.isTicket
+      if (this.device === 'PC') { // 여기서 PC/모바일 버전 분기를 쳐준다.
+        this.openModal(this.dtlInfo) // PC일 경우 openModal() 함수를 타게 만든다.
+      } else { // 모바일일경우 query를 통해 페이지가 이동하게 한다.
+        this.$router.push({ name: 'voucherDetail', query: this.dtlInfo })
+      }
+    },
+
+    // pc에서 모달창 띄우기
+    async openModal(info) { // 오브젝트가 하나여서 flag를 사용할 필요가 없음. 그냥 info를 통해서 값을 받아옴
+      const component = { title: '교환권/티켓', comp: ticketDetail, class: 'ticket-detail-h' } // 오브젝트가 하나여서 구지 components ={} 로 안 묶어도 됨
+      const modal = await modalController
+        .create({
+          component: component.comp,
+          cssClass: ['pc-modal-sm', component.class],
+          componentProps: {
+            popTitle: component.title,
+            popDetail: info, // 위에서 받아온 것을 통해 상세페이지 팝업 뜸
+            close: () => {
+              modal.dismiss()
+            }
+          }
+        })
+      return modal.present()
+    }
+  }
+  ```
++ 상세 페이지 수정
+  + 스크립트 수정
+  ```node
+  created() {
+    // pc에서 팝업 띄울 때 호출
+    this.params = this.popDetail
+    this.isTicket = Boolean(this.params.isTicket === 'true')
+    this.getDetailInfo()
+  },
+  ionViewWillEnter() {
+    // 모바일에서 페이지 이동 시 호출
+    console.log(this.$route.query)
+    this.params = this.$route.query
+    this.isTicket = Boolean(this.params.isTicket === 'true')
+    this.getDetailInfo()
+  },
+  ```
+  + 웹페이지 버전일 때에는 `ionViewWillEnter()`을 타지 않기 때문에 created에도 호출해 주었다.
+
+
+
+
+
+
+
+
