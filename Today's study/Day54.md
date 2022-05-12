@@ -1,5 +1,25 @@
-#### 스와이퍼 변경시 티켓 상테에 따라 배경색 변경
+#### 스와이퍼 변경시 티켓 상태에 따라 배경색 변경
 + 사용전과 사용완료 상태에 따라 티켓의 배경색이 바뀌게 만든다.
++ API 이름
+  + `tkIsuSt`: 티켓 상태 (I: 발급, U: 사용, C: 발급취소, E: 만료)
++ `data()`에 `swiper` 오브젝트로 선언해 줌(스와이퍼의 처음 인덱스 값은 0으로 해줌)
+  ```node
+  swiper: {
+          realIndex: 0
+            }
+  ```
++ `script` 설명
+  ```node
+  // 스와이퍼 변경 시 티켓 상태에 따라 배경 색 변경
+  changeStatus(swiper) { // 선어해준 swiper를 object형태로 받음
+    const status = this.ticketInfo[swiper.realIndex].tkIsuSt // 각각의 슬라이드의 상태를 담은 것을 status라는 변수에 넣음. 슬라이드는 각각의 인덱스 값으로 구분.
+
+    this.isTicket = !(status === 'U' || status === 'E') // U: 사용, E: 만료 일때는 배경색이 회색이어야 하는데 isTicket이 false 일때 회색이 되게 css를 해놔서 이렇게 해 줌
+  }
+  ```
++ `<div v-if="params.prdtGbn === 'T'" class="tourpass_compose" :class="isTicket ? '' : 'off'">`
+  + `v-if="params.prdtGbn === 'T'"`: 투어패스일 경우만 보임
+  + `:class="isTicket ? '' : 'off'"`: false 일때 배경색 회색
 ```node
 <template>
   <ion-page>
@@ -119,120 +139,7 @@
 }
 </style>
 <style lang="scss" scoped>
-.tourpass_compose{
-  padding: 17px 15px;
-  background-color: #4587D3;
-  .tourpass_p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    p{
-      font-size: 14px;
-      color: #FFFFFF;
-    }
-  }
-}
-.ticket-deteil-contain{background-color: #509DF5; height: -webkit-calc(100vh - 64px);}
-.box{display: flex;}
-.number, .period{vertical-align: middle;}
-.info{font-size: 14px; color: #CBE2FC; margin-left: 15px;}
-.ti-info{font-size: 14px; color: #FFFFFF; margin-left: 15px;}
-.place{margin-left: 28px;}
-.ticket-backround{ @include background('~@/assets/image/temp/ticketLayout.png', 100% 100%, 0 0); width: 330px; height: 415px; margin: 20px auto; overflow: auto;}
-.ticket-back-box{
-  overflow: auto;
-  }
-.swiper {
-  --bullet-background: black;
-  --bullet-background-active: #fff;
-  --swiper-pagination-bullet-width: 6px;
-  --swiper-pagination-bullet-height: 6px;
-  .swiper-pagination{
-    position: unset;
-    margin-top: 20px;
-  }
-}
-.ti-detail-img{
-  width: 185px; height: 147px; margin: 8.6px 0 17px 0;
-  img{
-    width: 100%;
-    height: 100%;
-  }
-  }
-.ti-detail-title{font-size: 12px; color: #717377; margin-bottom: 8.6px;}
-.ti-detail-contents{width: 242px; font-size: 14px; @include limitTwoLine(); text-align: center; font-family: medium;}
-.ti-detail-opt{width: 242px; font-size: 12px; @include limitTwoLine(); text-align: center; font-family: medium;}
-.ti-detail-count{font-size: 12px; color: #717377;}
-.ti-detail-count-number{font-size: 12px; color: #EF3F3E; margin-left: 3px; font-family: medium; align-items: center;}
-.ti-detail-count-box{display: flex; margin-top: 4.5px; align-items: center;}
-.ti-detail-box{display: flex; flex-direction: column; align-items: center; margin: 38px 0; position: relative;}
-.ticket-bottom-box{display: flex;  position: absolute; bottom: -100px; width: 270px; justify-content: space-between;}
-.tourTicket-bottom-box{bottom: -140px;}
-.comment-img{width: 147px; height: 50px;}
-.ticket-bottom-img1{height: 50px; margin-top: 8px;}
-.ticket-bottom-img2{
-  width: 66px;
-  height: 66.25px;
-  img{
-    width: 100%;
-    height: 100%;
-  }
-}
-.changed{
-  background-color: #9AA2AB; height: -webkit-calc(100vh - 64px);
-  .info{color: #FFFFFF; opacity: 70%;}
-}
-.stamp-box-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  display: grid;
-  .stemp-box{
-    position: relative;  width: 95px; height: 95px;
-    display: block;
-    margin: auto;
-    .ticket-status-img {
-      position: absolute;
-      img{
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .ticket-status-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      margin: auto;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .ticket-status {
-        transform: rotate(-28deg);
-
-        > span, p {
-          font-size: 12px;
-          font-family: medium;
-          color: #fff!important;
-        }
-        > span {
-          font-weight: bold;
-        }
-        > p {
-          font-weight: 600;
-        }
-      }
-    }
-
-  }
-}
-.detail-info-box{padding: 0 15px;}
+==============================================(생략)===========================================
 .off{
   background-color: #848B93;
 }
@@ -310,7 +217,7 @@ export default defineComponent({
     changeStatus(swiper) {
       const status = this.ticketInfo[swiper.realIndex].tkIsuSt
 
-      this.isTicket = !(status === 'U' || status === 'E')
+      this.isTicket = !(status === 'U' || status === 'E') 
     }
   }
 })
