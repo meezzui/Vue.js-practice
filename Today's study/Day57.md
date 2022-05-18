@@ -35,7 +35,7 @@ watch: {
 + `this.copiedCouponChoiceList = this.array` 이렇게 하면 계속 값이 `false`가 들어간다.
 + 콘솔을 찍어보니 새로운 value값이랑 기존의 value 값이 같게 들어가고 있었다.(그니까 계속 false로 나오지...😥)
 + 그러면 왜 값이 같게 들어가는 것일까??🧐
-  + 
+  + 배열 전체가 변경되기 때문이다.
 
 
 
