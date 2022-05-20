@@ -17,7 +17,7 @@ watch: {
     handler(array) { // handler 함수 사용. handler는 새로운 value와 기존의 value를 비교할 수 있는 함수이다.
       array.forEach((a, index) => { // 반복문으로 select의 value값을 비교해줌 
         if (a.selected !== 'placeholder') { // 선택된 것이 'placeholder'라는 value값이랑 다를 경우 if문을 탐
-          if (a.selected !== this.copiedCouponChoiceList[index].selected) { // 
+          if (a.selected !== this.copiedCouponChoiceList[index].selected) { // 새로 선택한 것과 기존 배열에서 선택된 인덱스의 값이 서로 다를 경우
             a.clicked = true // clicked에 true 값을 넣어줌
           }
         } else { //선택된 것이 'placeholder'라는 value값이랑 같을 경우 else문을 탐
