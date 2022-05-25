@@ -44,6 +44,44 @@ data() {
 + 따라서 위에 `data()`부분에 선언해준 방식(api연동 형태)대로 해줘야 한다.
 + 저렇게 초기화를 해주고 `getFavorList()`를 타기 전에 초기화 함수로 선언한 `reset()`을 써주면 해당 페이지에 진입했을 때 리스트가 한번 초기화되고 화면이 그려지게 된다.
 
-
+### 더 간단하게 초기화 해주는 방법✨✨✨
++ 위와 같이 해줘도 되지만 직접적으로 찜한 데이터가 들어가는 곳은 `list: []`이다.
++ 그렇기 때문에 전체를 초기화해 줄 필요 없이 `list:[]`만 초기화해주면 된다.
+```node
+this.categoryList.forEach(c => {
+  c.list = []
+})
+```
++ 위와 같이 `for문`을 돌려서 해당 리스트의 값을 초기화 해주면 된다.
++ `for문`을 돌리는 이유는 `categoryList[]`안에 각각의 카테고리별 `list: []`를 초기화 해주기 위해서이다.
++ 전체 코드
+  ```node
+  data() {
+    return {
+      title: '찜한 상품',
+      formClass: ['search_bar_wrap'],
+      categoryList: [
+        { key: '', name: this.$t('store'), list: [], page: 1 },
+        { key: '', name: this.$t('product'), list: [], page: 1 },
+        { key: '', name: this.$t('tourPass'), list: [], page: 1 },
+        { key: '', name: this.$t('tourInfo'), list: [] }
+      ],
+      req: { target: '', tagGbn: 'F', size: 2, page: 1 },
+      cartParams: {}
+    }
+  },
+  async ionViewWillEnter() {
+    this.reset()
+    this.getFavorList()
+  },
+  methods: {
+    reset() {
+      // 리스트 초기화
+      this.categoryList.forEach(c => {
+        c.list = []
+      })
+    }
+   }
+  ```
 
 
