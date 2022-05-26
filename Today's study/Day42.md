@@ -1,4 +1,4 @@
-#### 상품 구매 옵션 api  
+#### 상품 구매 옵션  
 [template 코드 설명]
 + `:modalHeight="selectedOpt.length > 1 ? '442px' : '390px'"`: 옵션리스트에 값이 있을 때와 없을때 모달창 height값 지정
 + `<article class="product-selectbox-wrapper" v-if="optionSet.length !== 0">` : 옵션이 있을때만 노출 
@@ -82,30 +82,7 @@
 </template>
 
 <script>
-import { IonPage, IonRow, IonCol } from '@ionic/vue'
-import { ref } from 'vue'
-import StarRating from 'vue-star-rating'
-import { getTourpassInfo } from '@/http/modules/tourpass'
-import { Pagination, Navigation } from 'swiper'
-import BaseModal from '@/components/ModalComponent/BaseModal.vue'
-import Count from '@/components/Count.vue'
-import { requestReviewList, registerFavorite, deleteFavorite } from '@/http/modules/common'
-
 export default {
-  setup() {
-    const tourpassSwiperIndex = ref(0)
-    const setTourPassSwiperIdx = (swiper) => {
-      tourpassSwiperIndex.value = swiper.realIndex
-    }
-    return {
-      tourpassSwiperIndex,
-      setTourPassSwiperIdx,
-      modules: [Pagination, Navigation]
-    }
-  },
-  components: {
-    IonPage, StarRating, BaseModal, Count, IonRow, IonCol
-  },
   data() {
     return {
       tabList: [true, false, false],
@@ -160,53 +137,6 @@ export default {
       } else {
         // 옵션 있는 경우 옵션 초기 기본값 세팅
         this.setDefaultOptions()
-      }
-    },
-    // 등록돤 리뷰 목록 조회
-    async getReviewList() {
-      this.reviewParams.rvGbnVal = this.cpxPrdtNo
-      const res = await requestReviewList(this.reviewParams)
-      this.tourReviewList = res.data.reviews
-      console.log(this.tourReviewList)
-    },
-    // 즐겨찾기
-    onClickedLike(like) {
-      this.fvrStatus.fvrVal = this.cpxPrdtNo
-      this.fvrStatus.fvrGbn = 'T'
-      console.log(this.fvrStatus)
-      if (like) {
-        registerFavorite(this.fvrStatus).then(res => {
-        }).catch(err => {
-          if (err.status === 401) {
-            console.log(err)
-          } else {
-            this.$alert({
-              msg: err.errorMessage,
-              success: () => {
-                this.like = false
-                err.success ? this.$router.push({ name: err.success }) : ''
-              }
-            })
-          }
-        }).finally(_ => {
-          this.getTourpassInfo()
-        })
-      } else {
-        deleteFavorite(this.fvrStatus).then(res => {
-        }).catch(err => {
-          if (err.status === 401) {
-            console.log(err)
-          } else {
-            this.$alert({
-              msg: err.errorMessage,
-              success: () => {
-                this.like = false
-                err.success ? this.$router.push({ name: err.success }) : ''
-              }
-            })
-          }
-        }).finally(_ => {
-        })
       }
     },
     clickedTab(idx) {
@@ -369,10 +299,6 @@ export default {
 }
 </script>
 ```
-+ 결과 이미지
-
-![image](https://user-images.githubusercontent.com/86812098/163770183-10d98771-4b4c-43d1-8b78-01f685e37a53.png)
-
 
 
 
