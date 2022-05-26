@@ -15,8 +15,6 @@
 + option태그를 for문 돌려서 optSet에 들어오는 value값들이 들어올 수 있게 했다.
 + `<article v-for="(selected , s) in orderOpt" :key="s" class="selected-product-wrapper">` : 선택된 옵션 반복문으로 돌리기
 
-![image](https://user-images.githubusercontent.com/86812098/163773197-c7046407-0181-402a-aace-b37f42514a77.png)
-
 + `<article v-for="(selected , s) in orderOpt" :key="s" class="selected-product-wrapper">` : 선택된 옵션 리스트
 + `<Count :count-option="{count: selected.cnt, index1: s}" @change="onChangeCount"/>` : 옵션 수량부분. Count.vue컴포넌트로 따로 빼둠. 해당 인덱스의 선택된 수량만큼 들어감
 + `{{ addComma(selected.cnt * tourpassInfo.salAmt) }}`: (선택된 옵션의 수량 * 상품 가격)을 나타냄
