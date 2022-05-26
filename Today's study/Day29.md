@@ -187,6 +187,3 @@ methods: {
 + 해당 태그에 `@click-right="clickedPurchase()"`라는 클릭 이벤틀를 걸어준다. 여기서 `@click`이 아닌  `@click-right`이렇게 해준 이유는 '구매'버튼이 오른쪽에 있기 때문이다.
 + `clickedPurchase()` : 이 메소드의 요소들의 해당 이름들은 Alert.vue 에서 사용되었던 이름들이다. 사용할 때는 그것들의 기능에 맞게 적어주면 된다.
  
-#### Alert창 결과
-
-<img height="350px" src="https://user-images.githubusercontent.com/86812098/161316880-21355853-f31b-4899-8c82-0156dda8fdc2.png">
