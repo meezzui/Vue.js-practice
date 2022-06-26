@@ -25,24 +25,7 @@
 </template>
 
 <style lang="scss" scoped>
-
-  .swiper{
-    width: calc(100% - 30px); margin: 0 auto;
-    .swiper-slide {
-      width: max-content;
-      input {
-        all: unset;
-      }
-      input + label{
-        font-size: 14px; display: inline-block;  color: #717377;  padding: 5px 13px; height: 32px; width: max-content;
-        border-radius: 16px; border: 1px solid #EBEBEB;
-      }
-      input:checked + label {
-        background-color: #22BDB6; color: white; border: none;
-      }
-    }
-  }
-
+================================(생략)===================================
 </style>
 
 <script>
