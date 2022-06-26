@@ -40,31 +40,7 @@ input:checked + label {
               <label :for="order">{{order}}&nbsp;<span>3</span></label>
             </div>
           </div>
-          <div class="order-list-contain">
-            <div class="order-list-box">
-              <div v-for="(lists, i) in orderList" :key="i" class="order-list-contents">
-                <div class="order-innerbox">
-                  <div class="order-list-innerbox1">
-                    <div>
-                      <span>2021.11.12&nbsp;(20123453123)</span>
-                    </div>
-                    <div :class="isValue ? '': 'off'">
-                      <span>결제완료</span>
-                    </div>
-                  </div>
-                  <div class="order-list-innerbox2">
-                    <span>[닥스] 데일리 정장구두</span>
-                  </div>
-                  <div class="order-list-innerbox3">
-                    <span>17,800원</span>
-                  </div>
-                </div>
-                <div class="go-to-detail">
-                  <p>상세보기</p>
-                </div>
-              </div>
-            </div>
-          </div>
+=========================================(생략)====================================
         </div>
       </template>
     </BaseLayout>
