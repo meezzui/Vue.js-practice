@@ -27,4 +27,4 @@
     <BaseLayout :changeColor="isTicket ? '#509DF5' : '#9AA2AB'"></BaseLayout>
     ```
     + 이렇게 바인딩하여 색깔요소를 직접적으로 넣는 것이 가능한 이유🧐
-      +   
+      + `Header.vue`에서 props로 스타일 자체를 넘겨줬는데 ` '--background:' + headerChangeColor`이렇게 하면 `headerChangeColor`을 `props`로 넘겨줬기 때문에 이 자리에 원하는 색깔을 넣을 수 있다.
