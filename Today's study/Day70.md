@@ -13,7 +13,19 @@
   </div>
   ```
 + `css`단
-
+  + `@keyframes`은 애니매이션 효과를 주어 css를 제어할 수 있다.
+  + 어떤 모양에서 어떤 모양으로, 혹은 어디에서 어디로 이동할 지에 대해 정해줄 수 있다.
+  + `@keyframes`에서 `!important` 속성을 이용한 정의는 모두 무시된다.
+  ```node
+  // 룰랫 돌리기
+  @keyframes rotation {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(7300deg); }
+  }
+  .rotation-item {
+      animation: rotation 7s ease-in-out forwards;
+  }
+  ```
 + `script`단
   + data()에 추가 될 클래스가 들어갈 배열을 선언 => `roulletteClass: []`
   + `this.roulletteClass.push('rotation-item')`: 배열에 `rotation-item`라는 클래스 추가
